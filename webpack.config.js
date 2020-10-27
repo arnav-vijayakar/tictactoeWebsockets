@@ -7,10 +7,18 @@ const settings = {
 
 module.exports = (env, options) => {
     return {
-        entry: './src/index.js',
+        entry: {
+            home: './src/main/index.js',
+            tictactoe: './src/tictactoe/index.js'
+        },
         output: {
             path: path.join(__dirname, 'public'),
-            filename: 'bundle.js'
+            filename: '[name].js'
+        },
+        devServer: {
+            proxy: {
+              '/': 'http://localhost:3000'
+            }
         },
         module: {
             rules: [
